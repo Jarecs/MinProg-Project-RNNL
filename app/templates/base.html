@@ -1,0 +1,38 @@
+{% extends "bootstrap/base.html" %}
+
+{% block title %}NewRNNL{% endblock %}
+
+{% block navbar %}
+<nav class="navbar navbar-default">
+  <div class="container">
+    <a class="navbar-brand mb-0 h1" href="{{ url_for('newrnnl.index') }}">NewRNNL</a>
+    <ul class="nav navbar-nav">
+        {% if current_user.is_authenticated %}
+      <li><a href="{{ url_for('newrnnl.create') }}">Create</a></li>
+      <li><a href="{{ url_for('newrnnl.find') }}">Find</a></li>
+        {% endif %}
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+        {% if not current_user.is_authenticated %}
+        <li><a href="{{ url_for('auth.register') }}">Register</a></li>
+        <li><a href="{{ url_for('auth.login') }}">Login</a></li>
+        {% else %}
+        <li><a href="{{ url_for('auth.logout') }}">Logout</a></li>
+        {% endif %}
+    </ul>
+  </div>
+</nav>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    {% for message in get_flashed_messages() %}
+    <div class="alert alert-warning">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        {{ message }}
+    </div>
+    {% endfor %}
+
+    {% block page_content %}{% endblock %}
+</div>
+{% endblock %}

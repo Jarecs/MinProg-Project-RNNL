@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Toolbar and Background</title>
+<style>
+    body, html {
+        height: 100%;
+        margin: 0;
+        background-color: #FFD9B3;
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .toolbar {
+        background-color: #f77f00;
+        padding: 10px 20px;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-sizing: border-box; /* Ensures padding is included in width */
+    }
+    .toolbar ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        gap: 20px;
+    }
+    .toolbar li {
+        padding: 5px 10px;
+    }
+    .toolbar a {
+        text-decoration: none;
+        color: white;
+        font-weight: bold;
+    }
+    .toolbar .user-icon {
+        background-color: white;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        display: inline-block;
+    }
+    .centered-content {
+        text-align: center;
+        padding-top: 60px; /* Space for toolbar */
+        width: 100%;
+    }
+    .centered-form {
+    width: 100%; /* Set the width to 100% */
+    margin: auto;
+    padding: 20px;
+    text-align: center; /* Center-align the content */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+    border-radius: 8px;
+    }
+
+    .form-group {
+        margin-bottom: 20px; /* Increase the margin-bottom for better spacing */
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    .form-group input,
+    .form-group button {
+        width: 80%;
+        padding: 10px;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+    }
+
+    .form-group button {
+        background-color: #f77f00;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+
+    .form-group button:hover {
+        background-color: #e76f00;
+    }
+
+
+</style>
+</head>
+<body>
+    <div class="toolbar">
+        <!-- Left-aligned items -->
+        <ul>
+            <li><a href="/create">Create Event</a></li>
+            <li><a href="/find">Find Event</a></li>
+        </ul>
+
+        <!-- Center-aligned title -->
+        <h1 class="toolbar-title"><a href="/home">{% block title %}Home{% endblock %}</a></h1>
+
+        <!-- Right-aligned items -->
+        <ul>
+            <li><a href="/app/static">Log out</a></li>
+            <li><a href="/profile" class="profile-link">
+                <div class="user-icon"></div>
+            </a></li>
+        </ul>
+    </div>
+
+    <div class="centered-content">
+        {% block content %}
+        <!-- Content specific to each page will go here -->
+        {% endblock %}
+    </div>
+
+</body>
+</html>

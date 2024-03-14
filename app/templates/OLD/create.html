@@ -1,0 +1,59 @@
+{% extends "layout.html" %}
+
+{% block title %}Create{% endblock %}
+
+
+{% block content %}
+<div class="centered-form">
+    <form method="POST">
+        {{ form.hidden_tag() }}
+        <div class="form-group">
+            {{ form.date.label(for="date") }}
+            {{ form.date(id="date", class="form-control") }}
+        </div>
+        <div class="form-group">
+            {{ form.location.label(for="location") }}
+            {{ form.location(id="location", class="form-control") }}
+        </div>
+        <div class="form-group">
+            {{ form.player_limit.label(for="players") }}
+            {{ form.player_limit(id="players", class="form-control") }}
+        </div>
+        <div class="form-group">
+            {{ form.private.label }}
+            {{ form.private(id="private", class="form-check-input") }}
+        </div>
+        <div class="form-group" id="password-field" style="display: none;">
+            {{ form.password.label(for="password") }}
+            {{ form.password(id="password", class="form-control") }}
+        </div>
+        <div class="form-group">
+            <button type="submit">Submit</button>
+        </div>
+    </form>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var privateCheckbox = document.getElementById('private');
+    var passwordField = document.getElementById('password-field');
+
+    privateCheckbox.addEventListener('change', function() {
+        if (privateCheckbox.checked) {
+            passwordField.style.display = 'block';
+        } else {
+            passwordField.style.display = 'none';
+        }
+    });
+
+    // Initialize the password field's visibility based on the initial checkbox state
+    if (privateCheckbox.checked) {
+        passwordField.style.display = 'block';
+    } else {
+        passwordField.style.display = 'none';
+    }
+});
+</script>
+
+
+{% endblock %}

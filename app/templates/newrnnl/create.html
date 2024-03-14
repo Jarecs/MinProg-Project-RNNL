@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block title %}NewRNNL{% endblock %}
+
+
+{% block page_content %}
+<div class="container">
+    <h1>Create Event</h1>
+    {% import "bootstrap/wtf.html" as wtf %}
+    {{ wtf.quick_form(form) }}
+</div>
+{% endblock %}
